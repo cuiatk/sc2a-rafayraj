@@ -5,6 +5,14 @@ package twitter;
 
 import java.util.List;
 import java.util.Set;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import static org.junit.Assert.assertFalse;
+import java.util.regex.*;
+import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 /**
  * Extract consists of methods that extract information from a list of tweets.
@@ -13,6 +21,7 @@ import java.util.Set;
  * you should implement their method bodies, and you may add new public or
  * private methods or classes if you like.
  */
+
 public class Extract {
 
     /**
@@ -23,9 +32,46 @@ public class Extract {
      * @return a minimum-length time interval that contains the timestamp of
      *         every tweet in the list.
      */
-    public static Timespan getTimespan(List<Tweet> tweets) {
-        throw new RuntimeException("not implemented");
-    }
+	
+	 public static Instant getStart(List<Tweet> tweets) {
+	        //assertFalse(tweets.isEmpty());
+	        if (tweets.isEmpty()){
+	            return Instant.now();
+	        }
+	        Instant starttime = Instant.MAX;
+	        for (Tweet tweet : tweets) {
+	            if (tweet.getTimestamp().isBefore(starttime)) {
+	                starttime = tweet.getTimestamp();
+	            }
+	        }
+	        return starttime;
+	    }
+	 
+	 public static Instant getEnd(List<Tweet> tweets) {
+	        //assertFalse(tweets.isEmpty());
+	        if (tweets.isEmpty()){
+	            return Instant.now();
+	        }
+	        Instant endtime = Instant.MIN;
+	        for (Tweet tweet : tweets) {
+	            if (tweet.getTimestamp().isAfter(endtime)) {
+	                endtime = tweet.getTimestamp();
+	            }
+	        }
+	        return endtime;
+	    }
+	
+    public static Timespan getTimespan(List<Tweet> tweets) 
+    {
+    	 if (tweets.isEmpty()) {
+             return new Timespan(Instant.now(), Instant.now());
+         } else {
+             Instant start = getStart(tweets);
+             Instant end = getEnd(tweets);
+             return new Timespan(start, end);
+
+         }
+    	 }
 
     /**
      * Get usernames mentioned in a list of tweets.
@@ -42,8 +88,25 @@ public class Extract {
      *         Twitter usernames are case-insensitive, and the returned set may
      *         include a username at most once.
      */
-    public static Set<String> getMentionedUsers(List<Tweet> tweets) {
-        throw new RuntimeException("not implemented");
+    public static Set<String> getMentionedUsers(List<Tweet> tweets) 
+    {
+    	Pattern pattern = Pattern.compile("@(\\w+|\\W+)");
+        Set<String> mentionedusers = new HashSet<String>();
+        for (Tweet tweet : tweets) 
+        {
+            String substring = tweet.getText();
+            Matcher matcher = pattern.matcher(substring.toLowerCase());
+            List<String> mentionedusersLowerCase = new ArrayList<String>();
+            while(matcher.find())
+                {
+                
+            	System.out.println(matcher.group(1));
+                mentionedusersLowerCase.add(matcher.group(1)); 
+                
+                }
+            mentionedusers.addAll(mentionedusersLowerCase);
+        }
+        return mentionedusers;
     }
 
 }
