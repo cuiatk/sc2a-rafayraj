@@ -32,8 +32,8 @@ public class ExtractTest {
     private static final Tweet tweet2 = new Tweet(2, "bbitdiddle", "rivest talk in 30 minutes #hype", d2);
     private static final Tweet tweet3 = new Tweet(3, "randomuser", "can we please pass this test??", d3);
     private static final Tweet tweet4 = new Tweet(4, "randomuser", "@test1 is this another one of these stupid tests?",d4);
-    private static final Tweet tweet5 = new Tweet(5, "randomuser2", "@test1 @test2 can't believe I'm doing another",d5);
-    private static final Tweet tweet6 = new Tweet(6, "randomuser2", "@test1 @test1 can't believe I'm doing another",d6);
+    private static final Tweet tweet5 = new Tweet(5, "randomuser2", "@test1 @test2 why i am doing these test!",d5);
+    private static final Tweet tweet6 = new Tweet(6, "randomuser2", "@test1 @test1 It's enough bro you don't need to chk",d6);
     
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
