@@ -72,24 +72,27 @@ public class FilterTest {
         assertEquals("expected start", d1, timespan.getStart());
         assertEquals("expected end", d3, timespan.getEnd());
     }
-      
+    @Test
+    public void testGetTimespanEmptyTweet() {
+        Timespan timespan = Extract.getTimespan(new ArrayList<Tweet>());
+        assertEquals(timespan.getEnd(), timespan.getStart());         
+    }
+    
+    @Test
     public void testGetTimespanTwoTweets1() {
         Timespan timespan = Extract.getTimespan(Arrays.asList(tweet1,tweet2));
         assertEquals(d1, timespan.getStart());
         assertEquals(d2, timespan.getEnd());        
     }
     
-
+    @Test
     public void testGetTimespanOneTweet() {
         Timespan timespan = Extract.getTimespan(Arrays.asList(tweet1));
         assertEquals(d1, timespan.getStart());
         assertEquals(d1, timespan.getEnd());        
     }
     
-    public void testGetTimespanEmptyTweet() {
-        Timespan timespan = Extract.getTimespan(new ArrayList<Tweet>());
-        assertEquals(timespan.getEnd(), timespan.getStart());         
-    }
+
     
     @Test
     public void testContaining() {
