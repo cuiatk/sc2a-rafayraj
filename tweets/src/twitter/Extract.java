@@ -33,19 +33,24 @@ public class Extract {
      *         every tweet in the list.
      */
 	
-	 public static Instant getStart(List<Tweet> tweets) {
+	 public static Instant getStart(List<Tweet> tweets)
+	 {
 	        //assertFalse(tweets.isEmpty());
-	        if (tweets.isEmpty()){
+	        if (tweets.isEmpty())
+	        {
 	            return Instant.now();
 	        }
 	        Instant starttime = Instant.MAX;
-	        for (Tweet tweet : tweets) {
-	            if (tweet.getTimestamp().isBefore(starttime)) {
+	        for (Tweet tweet : tweets) 
+	        {
+	            if (tweet.getTimestamp().isBefore(starttime)) 
+	            {
 	                starttime = tweet.getTimestamp();
 	            }
 	        }
 	        return starttime;
-	    }
+	   
+	 }
 	 
 	 public static Instant getEnd(List<Tweet> tweets) {
 	        //assertFalse(tweets.isEmpty());
