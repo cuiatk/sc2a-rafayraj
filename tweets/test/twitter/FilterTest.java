@@ -20,7 +20,7 @@ public class FilterTest {
      * Make sure you have partitions.
      */
 	
-	// I added 4 more tweets
+	// I added 4 more tweets for extra checking 
     
     private static final Instant d1 = Instant.parse("2019-03-17T10:00:00Z");
     private static final Instant d2 = Instant.parse("2019-03-17T11:00:00Z");
